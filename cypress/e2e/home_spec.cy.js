@@ -1,4 +1,4 @@
-describe('Header test', () => {
+describe('Home test', () => {
   beforeEach(()=>{
     cy.visit('https://trytestingthis.netlify.app/')
   })
@@ -14,8 +14,12 @@ describe('Header test', () => {
     cy.get('@navi').first().next().should('have.text', 'Home')
   })
 
-  it('Body', ()=>{
-
+  it('Body left', ()=>{
+    cy.get('.side').should('contain','This is your layout one')
+    cy.get('.pop-up-alert > button').click()
+    cy.get('.pop-up-alert > #demo').should('have.text', 'You Pressed the OK Button!')
+    cy.get('.tooltip').realHover();
+    cy.get('.tooltiptext').should('not.have.css', 'visibility', 'hidden')
   })
 
   it('Footer', ()=>{
