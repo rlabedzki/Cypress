@@ -18,8 +18,12 @@ describe('Home test', () => {
     cy.get('.side').should('contain','This is your layout one')
     cy.get('.pop-up-alert > button').click()
     cy.get('.pop-up-alert > #demo').should('have.text', 'You Pressed the OK Button!')
+    //needs addional library, only works on chomium
     cy.get('.tooltip').realHover();
     cy.get('.tooltiptext').should('not.have.css', 'visibility', 'hidden')
+    //image
+    cy.get('.fakeimg').should('be.visible')
+    cy.get('.side > :nth-child(6)').should('contain.text', 'This is your description of the photo')
   })
 
   it('Footer', ()=>{
