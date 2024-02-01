@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+require('@4tw/cypress-drag-drop')
+
+Cypress.Commands.add('login', (username, password) => {
+    cy.get('#uname').type(username)
+    cy.get('#pwd').type(password)
+    cy.get('[type="submit"]').click()
+})
