@@ -15,7 +15,7 @@ describe('Home test', () => {
   })
 })
 
-describe('Body left test', () => {
+describe('Layout one', () => {
   beforeEach(() => {
     cy.visit('https://trytestingthis.netlify.app/')
   })
@@ -75,9 +75,18 @@ describe('Body left test', () => {
     cy.login('test', 'test')
     cy.get('h2').should('have.text','Login Successful :) ')
   })
+})
 
-  it('Login correct, bad assert', () => {
-    cy.login('test', 'test')
-    cy.get('h2').should('have.text','  Login Successful :) ')
+
+describe('Layout two', () => {
+  beforeEach(() => {
+    cy.visit('https://trytestingthis.netlify.app/')
   })
+
+  it('Empty form', () => {
+    cy.get('.btn').click()
+    cy.url().should('include','?fname=&lname=&option=option&Options=&favcolor=%2300ced1&day=&a=50&myfile=&quantity=&message=The+cat+was+playing+in+the+garden.')
+  })
+  
+
 })
