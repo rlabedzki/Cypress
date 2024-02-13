@@ -1,3 +1,5 @@
+const { afterEach } = require("mocha")
+
 describe('Home test', () => {
   beforeEach(() => {
     cy.visit('https://trytestingthis.netlify.app/')
@@ -88,5 +90,10 @@ describe('Layout two', () => {
     cy.url().should('include','?fname=&lname=&option=option&Options=&favcolor=%2300ced1&day=&a=50&myfile=&quantity=&message=The+cat+was+playing+in+the+garden.')
   })
   
+  it('Select gender', () => {
+    cy.get('#female').click()
+    cy.get('.btn').click()
+    cy.url().should('include','&gender=female')
+  })
 
 })
