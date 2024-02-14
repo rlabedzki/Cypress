@@ -96,4 +96,10 @@ describe('Layout two', () => {
     cy.url().should('include','&gender=female')
   })
 
+  it('Select one option', () => {
+    cy.get('#option').select('Option 2')
+    cy.get('.btn').click()
+    cy.url().should('include','&option=option+2')
+  })
+
 })
