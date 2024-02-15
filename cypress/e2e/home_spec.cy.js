@@ -102,4 +102,11 @@ describe('Layout two', () => {
     cy.url().should('include','&option=option+2')
   })
 
+  it('Select multiple options', () => {
+    cy.get('[name="option2"]').click()
+    cy.get('[name="option3"]').click()
+    cy.get('.btn').click()
+  })
+
+
 })
