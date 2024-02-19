@@ -108,5 +108,10 @@ describe('Layout two', () => {
     cy.get('.btn').click()
   })
 
+  it('Select colour', () => {
+    cy.get('#favcolor').invoke('val', '#000000');
+    cy.get('.btn').click();
+    cy.url().should('include','&favcolor=%23000000') 
+  })
 
 })
