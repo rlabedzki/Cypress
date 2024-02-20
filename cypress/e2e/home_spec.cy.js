@@ -114,4 +114,16 @@ describe('Layout two', () => {
     cy.url().should('include','&favcolor=%23000000') 
   })
 
+  it('Date', () => {
+    cy.get('#day').type('1999-12-01');
+    cy.get('.btn').click();
+    cy.url().should('include','&day=1999-12-01') 
+  })
+
+  it('Range value', () => {
+    cy.get('#a').invoke('val', '55').trigger('input');
+    cy.get('.btn').click();
+    cy.url().should('include','&a=55') 
+  })
+
 })
