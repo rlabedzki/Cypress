@@ -1,5 +1,3 @@
-const { afterEach } = require("mocha")
-
 describe('Home test', () => {
   beforeEach(() => {
     cy.visit('https://trytestingthis.netlify.app/')
