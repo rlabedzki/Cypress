@@ -110,20 +110,53 @@ describe('Layout two', () => {
 
   it('Select colour', () => {
     cy.get('#favcolor').invoke('val', '#000000');
-    cy.get('.btn').click();
+    cy.get('.btn').click()
     cy.url().should('include','&favcolor=%23000000') 
   })
 
   it('Date', () => {
     cy.get('#day').type('1999-12-01');
-    cy.get('.btn').click();
+    cy.get('.btn').click()
     cy.url().should('include','&day=1999-12-01') 
   })
 
-  it('Range value', () => {
+  it('Range value scroller', () => {
     cy.get('#a').invoke('val', '55').trigger('input');
-    cy.get('.btn').click();
+    cy.get('.btn').click()
     cy.url().should('include','&a=55') 
   })
 
+  it('File', () => {
+    cy.get('input[type=file]').selectFile('cypress/fixtures/test_file.txt')
+    cy.get('.btn').click()
+    cy.url().should('include', '&myfile=test_file.txt')
+  })
+
+  it('Range value input', () => {
+    cy.get('#quantity').type(3);
+    cy.get('.btn').click()
+    cy.url().should('include', '&quantity=3')
+  })
+
+  it('Long text', () => {
+    const text = 'test text '.repeat(50)
+    cy.get('textarea[name="message"]').clear().type(text)
+    cy.get('.btn').click()
+    cy.url().should('include', `&message=${'test+text+'.repeat(50)}`)
+  })
+
+})
+
+describe('Text after Layout 2', () => {
+  beforeEach(() => {
+    cy.visit('https://trytestingthis.netlify.app/')
+  })
+
+  it('Text', () => {
+    cy.get('.main > :nth-child(4)').should('have.text', 'Some text..')
+    cy.get('.main > :nth-child(5)').should(($p) => {
+      const text = $p.text()
+      expect(text).to.include(' tempor incididunt ut labore et')
+    })
+  })
 })
