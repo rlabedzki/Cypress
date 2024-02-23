@@ -158,3 +158,21 @@ describe('Text after Layout 2', () => {
     })
   })
 })
+
+describe('Layout 3', () => {
+  beforeEach(() => {
+    cy.visit('https://trytestingthis.netlify.app/')
+  })
+
+  it('Table date', () => {
+    cy.get('.main > h5').should('have.text', 'Title description, Sep 2, 2017')
+  })
+
+  it('Table header', () => {
+    cy.get('tbody > :nth-child(1) > :nth-child(5)').should('have.text', 'Occupation')
+  })
+})
+
+describe('Footer', () => {
+  
+})
