@@ -174,5 +174,16 @@ describe('Layout 3', () => {
 })
 
 describe('Footer', () => {
-  
+  beforeEach(() => {
+    cy.visit('https://trytestingthis.netlify.app/')
+  })
+
+  it('Creator name', () => {
+    cy.get('.footer > :nth-child(1)').should('have.text', 'Created by Oviya Kandaswamy')
+  })
+
+  it('Links', () => {
+    cy.get(':nth-child(3) > a').should("have.attr", "href", "https://github.com/oviyak/Testing")
+    cy.get(':nth-child(4) > a').should("have.attr", "href", "https://www.linkedin.com/in/oviyak/")
+  })
 })
