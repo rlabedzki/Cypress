@@ -1,6 +1,10 @@
+import Form from '../pages/homeForm'
+
+const homeForm = new Form()
+
 describe('Home test', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Header', () => {
@@ -17,7 +21,7 @@ describe('Home test', () => {
 
 describe('Layout one', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Button', () => {
@@ -80,66 +84,66 @@ describe('Layout one', () => {
 
 describe('Layout two', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Empty form', () => {
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','?fname=&lname=&option=option&Options=&favcolor=%2300ced1&day=&a=50&myfile=&quantity=&message=The+cat+was+playing+in+the+garden.')
   })
   
   it('Select gender', () => {
     cy.get('#female').click()
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','&gender=female')
   })
 
   it('Select one option', () => {
     cy.get('#option').select('Option 2')
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','&option=option+2')
   })
 
   it('Select multiple options', () => {
     cy.get('[name="option2"]').click()
     cy.get('[name="option3"]').click()
-    cy.get('.btn').click()
+    homeForm.submit()
   })
 
   it('Select colour', () => {
     cy.get('#favcolor').invoke('val', '#000000');
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','&favcolor=%23000000') 
   })
 
   it('Date', () => {
     cy.get('#day').type('1999-12-01');
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','&day=1999-12-01') 
   })
 
   it('Range value scroller', () => {
     cy.get('#a').invoke('val', '55').trigger('input');
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include','&a=55') 
   })
 
   it('File', () => {
     cy.get('input[type=file]').selectFile('cypress/fixtures/test_file.txt')
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include', '&myfile=test_file.txt')
   })
 
   it('Range value input', () => {
     cy.get('#quantity').type(3);
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include', '&quantity=3')
   })
 
   it('Long text', () => {
     const text = 'test text '.repeat(50)
     cy.get('textarea[name="message"]').clear().type(text)
-    cy.get('.btn').click()
+    homeForm.submit()
     cy.url().should('include', `&message=${'test+text+'.repeat(50)}`)
   })
 
@@ -147,7 +151,7 @@ describe('Layout two', () => {
 
 describe('Text after Layout 2', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Text', () => {
@@ -161,7 +165,7 @@ describe('Text after Layout 2', () => {
 
 describe('Layout 3', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Table date', () => {
@@ -175,7 +179,7 @@ describe('Layout 3', () => {
 
 describe('Footer', () => {
   beforeEach(() => {
-    cy.visit('https://trytestingthis.netlify.app/')
+    cy.visit('/')
   })
 
   it('Creator name', () => {

@@ -1,6 +1,6 @@
 describe('Contact Test', () => {
     beforeEach(() => {
-        cy.visit('https://trytestingthis.netlify.app/contact')
+        cy.visit('/contact')
     })
     
     it('Thank you message', () => {
